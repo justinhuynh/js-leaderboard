@@ -36,80 +36,33 @@ function Team(name, rank, wins, losses) {
   this.losses = losses;
 }
 
-// var teamConstructor = function(name, rank, wins, losses) {
-//   return {
-//     name: name,
-//     rank: rank,
-//     wins: wins,
-//     losses: losses
-//   }
-// }
-
 var gamesArray = gameInfo();
 
-var findTeam = function(element, index, array) {
-
+var findTeamByName = function(teamArray, teamName) {
+  for (var i = 0; i < teamArray.length; i++) {
+    var teamObject = teamArray[i];
+    if (teamObject.name === teamName) {
+      return teamObject;
+    }
+  }
+  return false;
 }
 
 var allTeams = function(games) {
   var teams = [];
-  teams.push(new Team("Patriots"));
-  teams.push(new Team("Broncos"));
 
   for (var i = 0; i < games.length; i++) {
     var homeTeamName = games[i].home_team;
     var awayTeamName = games[i].away_team;
-    teams.forEach(function(element, index, array) {
-      if (team.name !== homeTeamName && team.name !== awayTeamName) {
-        array.push()
-      } else {
 
-      }
+    if (!findTeamByName(teams, homeTeamName)) {
+      teams.push(new Team(homeTeamName));
     }
-  );
-    debugger;
-    // teams.find(findTeam);
 
-    // var homeTeam = new Team(games[i].home_team);
-    // var awayTeam = new Team(games[i].away_team);
-    // if (teams.indexOf(homeTeam) === -1) {
-
-      // teams.push(homeTeam);
+    if (!findTeamByName(teams, awayTeamName)) {
+      teams.push(new Team(awayTeamName));
     }
-    // if (teams.indexOf(awayTeam) === -1) {
-    //   teams.push(awayTeam);
-    // }
   }
+
   return teams;
 }
-
-// allTeams(gamesArray);
-
-// var teamsArray = function() {
-//   var teams = [];
-//   for (var i = 0; i < gameInfo().length; i++) {
-//     var homeTeam = gameInfo()[i].home_team;
-//     var awayTeam = gameInfo()[i].away_team;
-//     teams.push(homeTeam, awayTeam);
-//   }
-//   return teams.sort();
-// }
-
-// var uniqueTeams = function() {
-//   var teams = teamsArray().slice();
-//   var results = [];
-//   for (var i = 0; i < teams.length - 1; i++) {
-//     if (teams[i + 1] !== teams[i]) {
-//       results.push(teams[i]);
-//     }
-//   }
-//   return results;
-// }
-
-//
-// var uniqueTeams = function() {
-//   var teams = [];
-//   for (var i = 0; i < allTeams().length; i++) {
-//     if (teams)
-//   }
-// }
